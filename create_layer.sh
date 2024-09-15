@@ -13,7 +13,6 @@ docker build -t lambda-layer "$DIRECTORY"
 docker run --name lambda-layer-container -v "$DIRECTORY:/app" lambda-layer
 
 # create layers directory, if not created.
-
 mkdir -p layers
 
 ## Move the zip file to layers directory if it was created successfully
@@ -23,7 +22,7 @@ mkdir -p layers
 #     echo "Error: Zip file not found!"
 #     exit 1
 
-docker cp "lambda-layer-container:/app/$LAYER_NAME.zip" layers/
+docker cp "lambda-layer-container:/app/$LAYER_NAME.zip" layers/ # use this command especially if you're working on a Windows machine.
 
 # Stop the conainer
 docker stop lambda-layer-container
